@@ -46,8 +46,8 @@ export default function ComplianceCalendarPage() {
  </div>
  </div>
 
- <section className="py-10 md:py-16" md:py-10 md:py-16 lg:py-24">
- <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl">
+      <section className="py-10 md:py-16 lg:py-24">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl">
  <div className="mb-12">
  <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-secondary text-accent">
  <CalendarDays className="h-6 w-6" />
@@ -145,7 +145,7 @@ export default function ComplianceCalendarPage() {
  </table>
  </div>
  ) : (
- <div className="py-10 md:py-16" text-center">
+ <div className="py-10 md:py-16 text-center">
  <p className="text-muted-foreground">No compliance deadlines found for the selected filters.</p>
  </div>
  )}

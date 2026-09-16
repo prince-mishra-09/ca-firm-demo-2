@@ -1,9 +1,47 @@
+"use client";
+
+import { useState, useEffect } from "react";
 import { siteConfig } from "@/data/siteConfig";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
 export function HomeHero() {
- return (
+  const [bars, setBars] = useState([40, 65, 45, 80, 55, 95, 70, 100]);
+  const [taxEfficiency, setTaxEfficiency] = useState(24.5);
+  const [blinkOn, setBlinkOn] = useState(true);
+
+  useEffect(() => {
+    // Animate the bars and numbers every 2 seconds
+    const interval = setInterval(() => {
+      setBars(prev => prev.map(val => {
+        const shift = Math.floor(Math.random() * 15) - 5; // Tend to go up slightly, but fluctuate
+        let next = val + shift;
+        if (next > 100) next = 100;
+        if (next < 20) next = 20;
+        return next;
+      }));
+
+      setTaxEfficiency(prev => {
+        const shift = (Math.random() * 1.5 - 0.5);
+        let next = prev + shift;
+        if (next > 35) next = 35;
+        if (next < 15) next = 15;
+        return Number(next.toFixed(1));
+      });
+    }, 2000);
+    
+    // Fast blinker for the status light
+    const blinkInterval = setInterval(() => {
+      setBlinkOn(b => !b);
+    }, 800);
+
+    return () => {
+      clearInterval(interval);
+      clearInterval(blinkInterval);
+    };
+  }, []);
+
+  return (
  <section className="relative min-h-[60vh] md:min-h-[85vh] flex items-center bg-background overflow-hidden border-b border-border">
  <div className="absolute inset-0 z-0 pointer-events-none bg-background"></div>
  
@@ -66,9 +104,9 @@ export function HomeHero() {
 
               {/* Chart Area */}
               <div className="flex-1 flex items-end justify-between gap-4 border-b border-border pb-4">
-                {[40, 65, 45, 80, 55, 95, 70, 100].map((height, i) => (
-                  <div key={i} className="w-1/8 w-full group-hover:bg-primary/20 bg-secondary rounded-t-sm transition-all duration-1000 ease-out relative group-hover:scale-y-105 origin-bottom" style={{ height: `${height}%`, transitionDelay: `${i * 100}ms` }}>
-                    <div className={`absolute bottom-0 w-full rounded-t-sm transition-all duration-1000 ${i === 7 ? 'bg-accent h-full' : 'bg-primary h-[80%]'}`}></div>
+                {bars.map((height, i) => (
+                  <div key={i} className="w-1/8 w-full group-hover:bg-primary/20 bg-secondary rounded-t-sm transition-all duration-1000 ease-in-out relative group-hover:scale-y-105 origin-bottom" style={{ height: `${height}%`, transitionDelay: `${i * 50}ms` }}>
+                    <div className={`absolute bottom-0 w-full rounded-t-sm transition-all duration-1000 ease-in-out ${i === 7 ? 'bg-accent h-full' : 'bg-primary h-[80%]'}`}></div>
                   </div>
                 ))}
               </div>
@@ -80,8 +118,8 @@ export function HomeHero() {
                   <p className="font-heading font-bold text-3xl text-primary">100%</p>
                 </div>
                 <div className="text-right">
-                  <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-1">Tax Efficiency</p>
-                  <p className="font-heading font-bold text-3xl text-accent">+24.5%</p>
+                  <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-1 transition-colors">Tax Efficiency</p>
+                  <p className="font-heading font-bold text-3xl text-accent transition-all duration-500">+{taxEfficiency}%</p>
                 </div>
               </div>
             </div>
@@ -90,7 +128,7 @@ export function HomeHero() {
             <div className="absolute top-16 right-8 bg-background border border-border p-4 rounded-sm shadow-xl z-30 animate-pulse" style={{ animationDuration: '4s' }}>
               <div className="flex items-center gap-3">
                 <div className="h-8 w-8 rounded-full bg-green-500/10 flex items-center justify-center">
-                  <div className="h-3 w-3 rounded-full bg-green-500"></div>
+                  <div className={`h-3 w-3 rounded-full bg-green-500 transition-opacity duration-300 ${blinkOn ? 'opacity-100' : 'opacity-30 shadow-[0_0_10px_rgba(34,197,94,0.8)]'}`}></div>
                 </div>
                 <div>
                   <p className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">Status</p>
