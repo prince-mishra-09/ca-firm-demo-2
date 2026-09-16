@@ -12,9 +12,11 @@ const manrope = Manrope({
  variable: "--font-heading",
 });
 
+import { siteConfig } from "@/data/siteConfig";
+
 export const metadata: Metadata = {
- title: "CA Firm | Premium Accounting & Advisory",
- description: "Bespoke Chartered Accountancy, Tax Advisory, and Financial Consulting.",
+ title: `${siteConfig.name} | Chartered Accountants`,
+ description: siteConfig.description,
 };
 
 import { Navbar } from "@/components/layout/Navbar";
