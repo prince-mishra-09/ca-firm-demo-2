@@ -1,0 +1,17 @@
+export const industries = [
+  "Information Technology",
+  "E-Commerce Platforms",
+  "Media & Entertainment",
+  "IT Enabled Services",
+  "AI / Emerging IT",
+  "Real Estate & Construction",
+  "Travel & Tourism",
+  "Agri Sector",
+  "Human Resource Services",
+  "Hardware & Infrastructure",
+  "Engineering & Development",
+  "Automobiles",
+  "Financial Services",
+  "White Goods / Electricals",
+  "Oil & Gas",
+];

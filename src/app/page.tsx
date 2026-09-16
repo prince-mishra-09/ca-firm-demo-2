@@ -3,10 +3,10 @@ import { CredentialStrip } from "@/components/sections/CredentialStrip";
 import { HomeServices } from "@/components/sections/HomeServices";
 import { HomeFirmProfile } from "@/components/sections/HomeFirmProfile";
 import { HomeApproach } from "@/components/sections/HomeApproach";
-import { HomeProcess } from "@/components/sections/HomeProcess";
+import { HomeIndustries } from "@/components/sections/HomeIndustries";
 import { HomePartners } from "@/components/sections/HomePartners";
+import { HomeTestimonials } from "@/components/sections/HomeTestimonials";
 import { HomeInsights } from "@/components/sections/HomeInsights";
-import { HomeTools } from "@/components/sections/HomeTools";
 import { HomeContact } from "@/components/sections/HomeContact";
 import { siteConfig } from "@/data/siteConfig";
 
@@ -23,10 +23,10 @@ export default function Home() {
       <HomeServices />
       <HomeFirmProfile />
       <HomeApproach />
-      <HomeProcess />
+      <HomeIndustries />
       <HomePartners />
+      <HomeTestimonials />
       <HomeInsights />
-      <HomeTools />
       <HomeContact />
     </div>
   );
